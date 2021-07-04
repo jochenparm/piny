@@ -32,7 +32,7 @@ class PydanticValidator(Validator):
 
     def load(self, data: LoadedData, **params):
         try:
-            return self.schema(**data).dict()
+            return self.schema(**{**data, **params}).dict()
         except Exception as e:
             raise ValidationError(origin=e, reason=str(e))
 
